@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 
 const ChatbotContext = createContext();
@@ -8,7 +8,7 @@ function Store({ children }) {
     const [messages, setMessages] = useState([]);
     const [userMessage, setUserMessage] = useState("");
     const [botResponse, setBotResponse] = useState({});
-
+    const messagesEndRef = useRef(null);
     useEffect(() => {
         axios.get(`${BASE_URL}/ChatBot`)
             .then((response) => {
@@ -35,6 +35,12 @@ function Store({ children }) {
         setUserMessage("");
     };
 
+    useEffect(() => {
+        if (messagesEndRef.current) {
+            messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    }, [messages]);
+
     return (
         <ChatbotContext.Provider value={{
             messages,
@@ -43,7 +49,8 @@ function Store({ children }) {
             setUserMessage,
             botResponse,
             setBotResponse,
-            postBotResponse
+            postBotResponse,
+            messagesEndRef
         }}>
             {children}
         </ChatbotContext.Provider>
