@@ -13,7 +13,7 @@ body {
   min-height: 100vh;
   margin: 0;
   padding: 20px;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/src/assets/shopping.jpg"); 
+  background-image: linear-gradient(#00000080, #00000080), url("/src/assets/groceries.jpg"); 
   background-size: cover;      
   background-repeat: no-repeat; 
   background-position: center; 
@@ -151,6 +151,7 @@ body {
     max-width: 100%;
     height: 80vh;
     border-radius: 15px;
+    
   }
 
   #user-input {
